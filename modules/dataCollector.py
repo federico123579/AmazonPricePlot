@@ -37,7 +37,7 @@ def write_data(products_matrix):
             price = str(val['current_price'])
         else:
             name = name + ',' + val['name']
-            price = price + ',' + val['current_price']
+            price = price + ',' + str(val['current_price'])
     convert_first_line(name)
     with open("data/price-data.txt", "a") as f:
         f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
