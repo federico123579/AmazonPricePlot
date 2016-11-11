@@ -22,7 +22,10 @@ def import_amazon_product(url):
     name = tree.xpath('//span[@id="productTitle"]/text()')[0][76:-33]
     str_price = tree.xpath('//span[@id="priceblock_ourprice"]/text()')
     current_price = price_extractor(str_price[0])
-    full_price = price_extractor(tree.xpath('//span[@class="a-text-strike"]/text()')[0])
+    try:
+        full_price = price_extractor(tree.xpath('//span[@class="a-text-strike"]/text()')[0])
+    except:
+        full_price = current_price
     currency = str_price[0][0:3]
     new_amazon_product = NEW_PRODUCT(name, full_price, current_price, currency)
     return new_amazon_product.__dict__
