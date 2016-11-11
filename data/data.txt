@@ -1,0 +1,1 @@
+{'current_price': 59.99, 'currency': 'EUR', 'discount': '14.29', 'name': 'Battlefield 1 - PlayStation 4', 'full_price': 69.99}
