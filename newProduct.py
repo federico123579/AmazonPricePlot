@@ -7,4 +7,4 @@ with open("data/list.txt", 'a') as f:   # appending the url on list.txt
     f.write(url)
 product_dict = priceImporter.import_amazon_product(url)
 with open("data/data.txt", "a") as f:   # appending data on data.txt
-    f.write(product_dict)
+    f.write(str(product_dict))
