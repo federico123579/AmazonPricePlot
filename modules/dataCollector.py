@@ -12,17 +12,21 @@ def delete_last_line(link_to_file):
     with open(link_to_file, 'w') as f:
         f.writelines([item for item in lines[:-1]])
 
+def convert_file_line(link_to_file, string_input, string_output):
+    import fileinput
+    file_data = fileinput.input(link_to_file, inplace=True)
+    for line in file_data:
+        if string_input == line:
+            print string_output
+        else:
+            print line.strip('\n')
+
 def convert_first_line(name):
     import fileinput
     new_line = 'Date,' + name
     with open("data/price-data.txt") as f:
         line_test = f.readline()
-    file_data = fileinput.input("data/price-data.txt", inplace=True)
-    for line in file_data:
-        if line_test == line:
-            print new_line
-        else:
-            print line.strip('\n')
+    convert_file_line("data/price-data.txt", line_test, new_line)
 
 def write_data(products_matrix):
     import datetime
