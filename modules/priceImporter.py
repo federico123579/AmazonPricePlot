@@ -19,7 +19,7 @@ def import_amazon_product(url):
     headers = {'user-agent': 'Mozilla/5.0'}
     page = requests.get(url, headers=headers)   # page response
     tree = html.fromstring(page.content)        # html tree reading
-    name = tree.xpath('//span[@id="productTitle"]/text()')[0][76:-33]
+    name = tree.xpath('//span[@id="productTitle"]/text()')[0].strip(' \n')
     str_price = tree.xpath('//span[@id="priceblock_ourprice"]/text()')
     current_price = price_extractor(str_price[0])
     try:
