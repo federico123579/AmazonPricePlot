@@ -16,8 +16,8 @@ def convert_file_line(link_to_file, string_input, string_output):
     import fileinput
     file_data = fileinput.input(link_to_file, inplace=True)
     for line in file_data:
-        if string_input == line:
-            print string_output
+        if line.find(str(string_input)) != -1:
+            print line.replace(str(string_input), str(string_output)).strip('\n')
         else:
             print line.strip('\n')
 
@@ -46,24 +46,34 @@ def write_data(products_matrix):
     with open("data/price-data.txt", "a") as f:
         f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
 
-def update_single_data(data_file, updated_product):
-    with open(data_file) as f:
-        lines = f.readlines()
-    for x, val in enumerate(lines):
-        old_price = eval(val)['current_price']
-        new_price = updated_product['current_price']
-        old_discount = eval(val)['discount']
-        new_discount = updated_product['discount']
-        if old_price != new_price:
-            convert_file_line(data_file, old_price, new_price)
-        elif old_discount != new_discount:
-            convert_file_line(data_file, old_discount, new_discount)
-        else:
-            pass
+def found_in_phrase(string_to_found, string_to_search_in):
+    phrase_set = string_to_found.split()
+    count = 0
+    for x in phrase_set:
+        if string_to_search_in.find(x) != -1:
+            count = count + 1
+    if count == len(phrase_set):
+        return 1
+    else:
+        return 0
 
-def upadte_full_file_data(data_file, list_file):
+def update_data(data_file, list_file):
     import priceImporter
+    with open(data_file) as f:
+        lines_data = f.readlines()
     with open(list_file) as f:
-        lines = f.readlines()
-    for line in lines:
-        update_single_data(data_file, priceImporter.import_amazon_product(line))
+        lines_list = f.readlines()
+    for x, val in enumerate(lines_data):
+        current_product = priceImporter.import_amazon_product(lines_list[x])
+        val = eval(val)
+        if found_in_phrase(val['name'], current_product['name']):
+            old_price = val['current_price']
+            new_price = current_product['current_price']
+            old_discount = val['discount']
+            new_discount = current_product['discount']
+            if old_price != new_price:
+                convert_file_line(data_file, old_price, new_price)
+            elif old_discount != new_discount:
+                convert_file_line(data_file, old_discount, new_discount)
+            else:
+                pass
