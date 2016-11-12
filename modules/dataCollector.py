@@ -64,7 +64,7 @@ def update_data(data_file, list_file):
     with open(list_file) as f:
         lines_list = f.readlines()
     for x, val in enumerate(lines_data):
-        current_product = priceImporter.import_amazon_product(lines_list[x])
+        current_product = priceImporter.import_product(lines_list[x])
         val = eval(val)
         if found_in_phrase(val['name'], current_product['name']):
             old_price = val['current_price']
