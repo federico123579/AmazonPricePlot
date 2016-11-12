@@ -45,3 +45,21 @@ def write_data(products_matrix):
     convert_first_line(name)
     with open("data/price-data.txt", "a") as f:
         f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
+
+def update_single_data(data_file, updated_product):
+    with open(data_file) as f:
+        lines = f.readlines()
+    for x, val in enumerate(lines):
+        old_price = eval(val)['current_price']
+        new_price = updated_product['current_price']
+        if old_price != new_price:
+            convert_file_line(data_file, old_price, new_price)
+        else:
+            pass
+
+def upadte_full_file_data(data_file, list_file):
+    import priceImporter
+    with open(list_file) as f:
+        lines = f.readlines()
+    for line in lines:
+        update_single_data(data_file, priceImporter.import_amazon_product(line))
