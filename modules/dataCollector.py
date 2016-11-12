@@ -52,8 +52,12 @@ def update_single_data(data_file, updated_product):
     for x, val in enumerate(lines):
         old_price = eval(val)['current_price']
         new_price = updated_product['current_price']
+        old_discount = eval(val)['discount']
+        new_discount = updated_product['discount']
         if old_price != new_price:
             convert_file_line(data_file, old_price, new_price)
+        elif old_discount != new_discount:
+            convert_file_line(data_file, old_discount, new_discount)
         else:
             pass
 
