@@ -1,6 +1,6 @@
-def collect_data():
+def collect_data(file_name):
     products_matrix = []                    # initialization matrix
-    with open("data/data.txt") as f:
+    with open(file_name) as f:
         lines = f.readlines()               # read data already registered
     for x, val in enumerate(lines):         # for line in data
         products_matrix.append(eval(val))         # append line in matrix
@@ -21,20 +21,23 @@ def convert_file_line(link_to_file, string_input, string_output):
         else:
             print line.strip('\n')
 
-def convert_first_line(name):
+def convert_first_line(name, file_name):
     import fileinput
     new_line = 'Date,' + name
-    with open("data/price-data.txt") as f:
+    with open(file_name) as f:
         line_test = f.readline()
-    convert_file_line("data/price-data.txt", line_test, new_line)
+    convert_file_line(file_name, line_test, new_line)
 
-def write_data(products_matrix):
+def write_data(products_matrix, file_name):
     import datetime
     now = datetime.datetime.now()
-    with open("data/price-data.txt") as f:
+    with open(file_name) as f:
         lines = f.readlines()
-    if int(lines[-1][8:10]) == int(now.day):
-        delete_last_line('data/price-data.txt')
+    try:
+        if int(lines[-1][8:10]) == int(now.day):
+            delete_last_line(file_name)
+    except:
+        pass
     for x, val in enumerate(products_matrix):
         if x == 0:
             name = val['name']
@@ -42,8 +45,8 @@ def write_data(products_matrix):
         else:
             name = name + ',' + val['name']
             price = price + ',' + str(val['current_price'])
-    convert_first_line(name)
-    with open("data/price-data.txt", "a") as f:
+    convert_first_line(name, file_name)
+    with open(file_name, "a") as f:
         f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
 
 def found_in_phrase(string_to_found, string_to_search_in):
@@ -58,13 +61,13 @@ def found_in_phrase(string_to_found, string_to_search_in):
         return 0
 
 def update_data(data_file, list_file):
-    import priceImporter
+    import priceImporter, update
     with open(data_file) as f:
         lines_data = f.readlines()
     with open(list_file) as f:
         lines_list = f.readlines()
     for x, val in enumerate(lines_data):
-        current_product = priceImporter.import_amazon_product(lines_list[x])
+        current_product = priceImporter.import_product(lines_list[x])
         val = eval(val)
         if found_in_phrase(val['name'], current_product['name']):
             old_price = val['current_price']
@@ -77,3 +80,4 @@ def update_data(data_file, list_file):
                 convert_file_line(data_file, old_discount, new_discount)
             else:
                 pass
+    update.add_to_data(data_file)
