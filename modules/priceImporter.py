@@ -1,7 +1,7 @@
 from lxml import html
 import requests
 class NEW_PRODUCT:
-    def __init__(self, service="", name="", full_price="", current_price="", currency=""):
+    def __init__(self, name="", service="", full_price="", current_price="", currency=""):
         self.name = name
         self.full_price = full_price
         self.current_price = current_price
