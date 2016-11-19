@@ -44,8 +44,8 @@ def request_page(url):
     page = requests.get(url, headers=headers)           # page response
     return html.fromstring(page.content)                # html tree reading
 def import_product(url):
-    found_service(url)
-    xpath_set = service_list[service][xpath_set]
+    service = found_service(url)
+    xpath_set = service_list[service]['xpath_set']
     tree = request_page(url)                                   # request page content
     name = tree.xpath(xpath_set['name'])[0].strip(' \n')
     str_price = tree.xpath(xpath_set['current_price'])[0].strip(" \t\n\r")
