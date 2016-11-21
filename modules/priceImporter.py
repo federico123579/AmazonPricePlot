@@ -23,7 +23,7 @@ class NEW_PRODUCT_ANALYSYS:
     def update(self, **entries):
         self.__dict__.update(entries)
 service_list = {
-'amazon': {'xpath_set': {'name': '//span[@id="productTitle"]/text()', 'current_price': '//span[@id="priceblock_ourprice"]/text()', 'full_price': '//span[@class="a-text-strike"]/text()'}},
+'amazon': {'xpath_set': {'name': '//span[@id="productTitle"]/text()', 'current_price': '//span[@id="priceblock_ourprice"]/text()', 'deal_price': '//span[@id="priceblock_dealprice"]/text()', 'full_price': '//span[@class="a-text-strike"]/text()'}},
 'allkeyshop': {'xpath_set': {'name': '//span[@itemprop="name"]/text()', 'price_list': '//strong[@itemprop="price"]/@content'}}
 }
 # Function to import product from Amazon
@@ -48,7 +48,10 @@ def import_product(url):
     xpath_set = service_list[service]['xpath_set']
     tree = request_page(url)                                   # request page content
     name = tree.xpath(xpath_set['name'])[0].strip(' \n')
-    str_price = tree.xpath(xpath_set['current_price'])[0].strip(" \t\n\r")
+    try:
+        str_price = tree.xpath(xpath_set['current_price'])[0].strip(" \t\n\r")
+    except:
+        str_price = tree.xpath(xpath_set['deal_price'])[0].strip(" \t\n\r")
     current_price = price_extractor(str_price)
     try:
         full_price = price_extractor(tree.xpath(xpath_set['full_price'])[0])
