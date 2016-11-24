@@ -1,4 +1,4 @@
-Date,Battlefield 1 - PlayStation 4,Logitech G430 Cuffia Gaming,Tappetino per Mouse da Gioco,Corsair Case Mid Tower,Samsung SSD 850 PRO 256GB
+Date,Battlefield 1 - PlayStation 4,Logitech G430 Cuffia Gaming,Tappetino per Mouse da Gioco,Corsair Case Mid Tower,Samsung SSD 850 PRO 256GB,WD Red WDD 3 TB,WD Red WDD 4 TB
 2016-11-11,59.99,64.98,6.99,57.99,136.27
 2016-11-12,59.99,64.98,6.99,57.99,136.27
 2016-11-13,59.99,64.98,6.99,57.99,136.27
@@ -8,3 +8,8 @@ Date,Battlefield 1 - PlayStation 4,Logitech G430 Cuffia Gaming,Tappetino per Mou
 2016-11-17,59.99,61.0,6.99,57.99,136.27
 2016-11-18,59.99,63.49,6.99,57.99,136.27
 2016-11-19,59.99,61.11,6.99,57.99,136.27
+2016-11-20,59.99,61.11,6.99,57.99,136.27
+2016-11-21,44.9,59.99,6.99,57.99,136.27
+2016-11-22,44.9,61.11,6.99,49.86,136.27
+2016-11-23,44.9,63.49,6.99,57.99,136.27,111.0,156.55
+2016-11-24,44.9,63.49,6.99,57.99,136.27,111.0,156.56

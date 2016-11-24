@@ -49,6 +49,22 @@ def write_data(products_matrix, file_name):
     with open(file_name, "a") as f:
         f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
 
+def write_average_data(data_object, file_name):
+    import datetime
+    now = datetime.datetime.now()
+    with open(file_name) as f:
+        lines = f.readlines()
+    try:
+        if int(lines[-1][8:10]) == int(now.day):
+            delete_last_line(file_name)
+    except:
+        pass
+    name = data_object.name
+    price = str(data_object.average)
+    convert_first_line(name, file_name)
+    with open(file_name, "a") as f:
+        f.write('%02d' % now.year + '-' + '%02d' % now.month + '-' + '%02d' % now.day + ',' + price)
+
 def found_in_phrase(string_to_found, string_to_search_in):
     phrase_set = string_to_found.split()
     count = 0
