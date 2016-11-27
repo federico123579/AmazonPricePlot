@@ -5,3 +5,6 @@
 {'name': 'WD Red WDD 3 TB', 'service': 'amazon', 'discount': '24.49', 'full_price': 147.0, 'currency': 'EUR', 'current_price': 111.0}
 {'name': 'WD Red WDD 4 TB', 'service': 'amazon', 'discount': '25.62', 'full_price': 210.5, 'currency': 'EUR', 'current_price': 156.56}
 {'name': 'Logitech G502 Proteus Spectrum', 'service': 'amazon', 'discount': '32.39', 'full_price': 91.99, 'currency': 'EUR', 'current_price': 62.19}
+{'name': 'Corsair Carbide 600Q', 'service': 'amazon', 'discount': '24.53', 'full_price': 174.9, 'currency': 'EUR', 'current_price': 131.99}
+{'name': 'XXL Gaming Mouse Pad', 'service': 'amazon', 'discount': '33.14', 'full_price': 29.9, 'currency': 'EUR', 'current_price': 19.99}
+{'name': 'G3 Ferrari Pizza ', 'service': 'amazon', 'discount': '29.95', 'full_price': 119.9, 'currency': 'EUR', 'current_price': 83.99}
